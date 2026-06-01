@@ -1,5 +1,5 @@
 import wollok.game.*
-import personaje.*
+import hector.*
 import cultivos.*
 
 program farmville {
@@ -10,9 +10,29 @@ program farmville {
 	game.ground("ground.png")
 
 	//  VISUALES
- 	game.addVisualCharacter(personaje)
- 	game.addVisual(new Maiz()) // Se agrega a modo de prueba
+ 	game.addVisualCharacter(hector)
+ 	//game.addVisual(new Maiz()) // Se agrega a modo de prueba
  	
+	// ACCIONES HECTOR
+	// SEMBRAR
+	//Al apretar la M siembra una semilla de maíz en su posición actual.
+	keyboard.m().onPressDo( new Maiz(position = hector.position()) )
+	//Al apretar la T siembra una semilla de trigo en su posición actual.
+	keyboard.t().onPressDo( new Trigo(position = hector.position()) )
+	//Al apretar la O siembra una semilla de tomaco en su posición actual.
+	keyboard.o().onPressDo( new Tomaco(position = hector.position()) )
+
+	// COSECHAR
+	keyboard.c().onPressDo({hector.cosechar()})
+
+	// REGAR
+	keyboard.r().onPressDo({hector.regar()})
+
+	// VENDER
+	keyboard.v().onPressDo({hector.vender()})
+
+	// Al presionar la barra espaciadora, queremos que nos diga: cuántas plantas tiene para vender, y cuánto oro juntó en total.
+
  	//  COMIENZA
 	game.start()
 }
